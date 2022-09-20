@@ -1,0 +1,42 @@
+<form [formGroup]="filterForm">
+    <div class="columns filter-box is-vcentered">
+        <div>
+            <i class="fa fa-filter mr-2"></i>
+            <span class="filter-title">Filter</span>
+        </div>
+       
+            <div class="column is-one-quarter filter-item">
+                <div class="input-group input-group-default">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa fa-file-signature"></i></span>
+                    </div>
+                    <input type="text" class="input" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                        placeholder="Post Title" formControlName="title">
+                </div>
+            </div>
+            <div class="column is-one-quarter filter-item">
+                <div class="input-group input-group-default">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input type="text" class="input" aria-label="Small" aria-describedby="inputGroup-sizing-default"
+                        placeholder="Publisher" formControlName="publisher">
+                </div>
+            </div>
+            <div class="column is-one-quarter filter-item">
+                <div class="select">
+                    <select>
+                      <option value="">Select</option>
+                      <option value="ascending">Old to New</option>
+                      <option value="descending">New to Old</option>
+                    </select>
+                  </div>
+            </div>
+        
+        <div class="button is-dark ml-2" (click)="filter()">
+            <i class="fa fa-search"></i>
+            Search
+        </div>
+    </div>
+    </form>

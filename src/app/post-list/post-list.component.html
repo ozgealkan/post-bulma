@@ -1,0 +1,55 @@
+<div class="container is-max-desktop mt-5">
+    <app-filter (filterEvent)="filterPosts($event)"></app-filter>
+     <div class="columns mt-3" *ngIf="initialized; else loadingTemplate">
+         <ng-container *ngIf="postList.length > 0; else emptyTemplate">
+             <div class="column is-half" *ngFor="let post of postList">
+                 <div class="card post-card">
+                     <div class="card-content">
+                         <div class="d-flex justify-content-between">
+                             <div>
+                                 <p class="title mb-0">{{post.title}}</p>
+                                 <span class="badge badge-secondary" *ngIf="myPost && !post.published">Draft</span>
+                                 <span class="badge badge-success" *ngIf="myPost && post.published">Published</span>
+                             </div>
+                             <!-- <div *ngIf="post.displayCount" class="read-by">
+                                 {{post.displayCount}}
+                                 <i class="fa fa-eye"></i>
+                             </div> -->
+                         </div>
+     
+                         <div class="d-flex mt-2">
+                             {{post.content | slice:0:300}} ...
+                         </div>
+                     </div>
+                     <footer class="is-flex-direction-row is-justify-content-space-between is-align-items-center px-4 py-3 card-footer">
+                         <div class="publish-date">
+                             <i class="fa fa-user"></i>
+                             {{post.username}}
+                             ({{post.createdAt | date :'medium'}})
+                         </div>
+                         <div class="link"><a class="read-more" [routerLink]="['/home/post-detail', post.id]">Read More<i
+                                     class="fa fa-arrow-right ml-2"></i></a></div>
+                         </footer>
+                 </div>
+             </div>
+         </ng-container>
+     </div>
+ </div>
+ <ng-template #loadingTemplate>
+    <progress class="progress is-medium is-dark mt-5" max="100">45%</progress>
+ </ng-template>
+ 
+ <ng-template #emptyTemplate>
+     <div class="col-12 d-flex justify-content-center">
+         <div class="card border-0">
+             <img src="assets/images/not-found.png" class="card-img-top" alt="" width="500px" height="400px">
+             <div class="card-body text-center">
+                 <p class="not-found-text">Post Not Found !</p>
+                 <div>
+                     <a routerLink="/home/create-post" class="btn btn-outline-primary my-2 my-sm-0 mr-2">+
+                         Create Post</a>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </ng-template>
